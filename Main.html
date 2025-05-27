@@ -1,0 +1,208 @@
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+
+
+@font-face {
+    font-family: Evelution Color Fun;
+    src:url('evelution-color-fun.colr.ttf') format('truetype');
+}
+
+
+
+
+	.hidein-nvf {
+		display:none;
+	}
+	.hidein-ncp {
+		display:none;
+	}
+	.hidein-vf {
+		display:block;
+	}
+@supports (font-variation-settings: "wdth" 115) {
+	.hidein-nvf {
+		display:block;
+	}
+	.hidein-vf {
+		display:none;
+	}
+}
+
+@supports (font-palette: normal) {
+	.hidein-ncp {
+		display:block;
+	}
+}
+
+.colors button {
+	font-size:1em;
+	font-family:sans-serif;
+}
+
+
+* {
+  font-family:Evelution Color Fun, casual;
+  accent-color:green;
+  color-scheme:light dark;
+  font-palette:--color;
+}
+      
+      h1,h2,h3,h4,h5,h6 {
+        line-height:1.5!important;
+        margin:8px 0;
+      }
+      textarea {
+        line-height:1.3;
+        transition:color 100ms ease-in-out 20ms;
+      }
+      body {
+              margin:0 8px;
+      }
+     body, code, input {
+        line-height:2;
+      }
+      code {
+        border:3px solid green;
+        color:green;
+        padding:10px;
+        display:block;
+      }
+      textarea {
+        font-size:24px;
+        display:block;
+        width:100%;
+        color:green;
+        border-radius:0;
+        -webkit-appearance:none;
+        border:0;
+        border-top:2px solid red;
+        border-bottom:2px solid green;
+        height:200px;
+        padding:0 0 10px;
+        overflow-y:auto;
+        caret-color:orange;
+      }
+      textarea:focus {
+        color:blue;
+      }
+      textarea:placeholder-shown {
+        color:rgba(0,0,0,0.6);
+        opacity:1;
+      }
+      textarea:-ms-input-placeholder {
+        color:rgba(0,0,0,0.6);
+        opacity:1;
+      }
+      textarea::-moz-placeholder {
+        color:rgba(0,0,0,0.6);
+        opacity:1;
+      }
+      textarea::-webkit-input-placeholder {
+        color:rgba(0,0,0,0.6);
+        opacity:1;
+      }
+      textarea::placeholder {
+        color:rgba(0,0,0,0.6);
+        opacity:1;
+      }
+
+	@media (prefers-color-scheme:dark) {
+      * {
+		accent-color:lime;
+      }
+      code {
+        border-color:lime;
+        color:lime;
+	  }
+      textarea {
+        color:lime;
+        caret-color:yellow;
+        border-top-color:magenta;
+        border-bottom-color:lime;
+      }
+      textarea:focus {
+        color:aqua;
+      }
+
+      textarea:placeholder-shown {
+        color:rgba(255,255,255,0.6);
+        opacity:1;
+      }
+      textarea:-ms-input-placeholder {
+        color:rgba(255,255,255,0.6);
+        opacity:1;
+      }
+      textarea::-moz-placeholder {
+        color:rgba(255,255,255,0.6);
+        opacity:1;
+      }
+      textarea::-webkit-input-placeholder {
+        color:rgba(255,255,255,0.6);
+        opacity:1;
+      }
+      textarea::placeholder {
+        color:rgba(255,255,255,0.6);
+        opacity:1;
+      }
+
+	}
+    </style>
+    <style class="theming">
+    </style>
+    <script>
+		function UpdateColors() {
+			document.querySelector("style.theming").innerHTML = '@font-palette-values --color {' +
+																	'font-family: Evelution Color Fun;' +
+																	'override-colors:0 ' + document.querySelector("input#Color1").value + ', 1 ' + document.querySelector("input#Color2").value + ', 2 ' + document.querySelector("input#Color3").value + ', 3 ' + document.querySelector("input#Color4").value + ';'
+																'}'
+		}
+		function SetColors(c1,c2,c3,c4) {
+			document.querySelector("input#Color1").value = c1;
+			document.querySelector("input#Color2").value = c2;
+			document.querySelector("input#Color3").value = c3;
+			document.querySelector("input#Color4").value = c4;
+			UpdateColors();
+		}
+    </script>
+  </head>
+  <body>
+  <h2>Welcome To the Coloring Evelution Universe</h2>
+    <code>
+Apparently we had reached a great height in the atmosphere, for the sky was a dead black, and the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, whose upper half was strewn with silver. Looking down into the dark gulf below, I could see a ruddy light streaming through a rift in the clouds. 
+    </code>
+    <h3>Pick your colors...</h3>
+		
+		<div style="display:flex; gap:10px;">
+			<div>
+				<input type="color" id="Color1" value="#ffffff" onchange="UpdateColors()"></input> - Outline
+			</div>
+			<div>
+				<input type="color" id="Color2" value="#32cd32" onchange="UpdateColors()"></input> - Filled Part
+			</div>
+			<div>
+				<input type="color" id="Color3" value="#ffd700" onchange="UpdateColors()"></input> - Triple-stroked Part
+			</div>
+			<div>
+				<input type="color" id="Color4" value="#dc143c" onchange="UpdateColors()"></input> - Double-stroked Part
+			</div>
+		</div>
+		<h3>...or choose one of the default colors</h3>
+		<div class="colors">
+			<button onclick="SetColors('#ffffff','#32cd32', '#ffd700', '#dc143c')">Default</button>
+			<button onclick="SetColors('#ffffff','#00ff00', '#ffff00', '#ff0000')">EGA</button>
+			<button onclick="SetColors('#ffffff','#55ff33', '#ffdd33', '#ff3355')">Brileback</button>
+			<button onclick="SetColors('#ffffff','#000000', '#ffffff', '#000000')">B&amp;W</button>
+			<button onclick="SetColors('#000000','#ffffff', '#000000', '#ffffff')">W&amp;B</button>
+		</div>
+
+    <h3>Test it</h3>
+      Just write some text into the textarea to test it:
+      <textarea placeholder="Write something here..."></textarea>
+    <h3>Use it on your documents</h3>
+      Just download the repository to your PC, find the font and install it
+     <h1 style="text-align:right">Powered by A Techno Services</h1>
+</body>
+</html>
